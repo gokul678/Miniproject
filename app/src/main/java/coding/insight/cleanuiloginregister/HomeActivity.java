@@ -61,12 +61,20 @@ public class HomeActivity extends AppCompatActivity {
     public TextView nameview;
     public TextView depview;
     public TextView semview;
+    public TextView nfd;
+//    public TextView fday,lday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+//        if(getSupportActionBar() !=null)
+//        {
+//            getSupportActionBar().hide();
+//        }
          nameview=findViewById(R.id.nameview);
+//          fday=findViewById(R.id.fday);
+//          lday=findViewById(R.id.lday);
          depview=findViewById(R.id.depview);
          semview=findViewById(R.id.semview);
 
@@ -75,9 +83,24 @@ public class HomeActivity extends AppCompatActivity {
         String value1 = extras.getString("x");
         String value2 = extras.getString("y");
         String value3 = extras.getString("z");
-        nameview.setText(value1);
-        depview.setText(value2);
-        semview.setText(value3);
+        String value5 = extras.getString("fame");
+        String value6 = extras.getString("lime");
+        String value7=extras.getString("w");
+        Toast.makeText(this, value7, Toast.LENGTH_LONG).show();
+//        Intent intentdd = new Intent(getApplicationContext(), Selectdate.class);
+//        intentdd.putExtra("h",value7);
+
+
+
+//        String value4= extras.getString("nfd");
+        nameview.setText(  "Name: "+value1);
+        depview.setText("Department: "+value2);
+        semview.setText("Semester: "+value3);
+//        fday.setText(value5);
+//        lday.setText(value6);
+
+//        nfd.setText(value4+"Days");
+
 
 //        Toast.makeText(getApplicationContext(),value2, Toast.LENGTH_LONG).show();
 
@@ -85,6 +108,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent activity2 = new Intent(getApplicationContext(),Selectdate.class);
+                activity2.putExtra("h",value7);
+
                 startActivity(activity2);
 
 

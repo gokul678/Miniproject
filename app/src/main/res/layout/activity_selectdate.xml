@@ -8,11 +8,12 @@
     tools:context=".Selectdate">
 
     <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:backgroundTint="#4CAF50"
         android:text="Select Date"
-        android:textSize="24sp"/>
+        android:textSize="24sp" />
 
     <com.squareup.timessquare.CalendarPickerView
         android:id="@+id/calendar_view"

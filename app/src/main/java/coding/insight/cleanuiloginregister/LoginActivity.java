@@ -75,31 +75,46 @@ public class LoginActivity extends AppCompatActivity {
             if(result.equals("success")) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 
-//                intent.putExtra("user_id",auth_id);
+
                 intent.putExtra("x", auth_name);
                 intent.putExtra("y",sem);
                 intent.putExtra("z",dep);
+                intent.putExtra("w",auth_id);
 
-                Toast.makeText(getApplicationContext(),auth_name, Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),sem, Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),dep, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),auth_name, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),sem, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),dep, Toast.LENGTH_LONG).show();
 
                 startActivity(intent);
+
+//                Intent intentd = new Intent(getApplicationContext(), Selectdate.class);
+//                 intentd.putExtra("w",auth_id);
             }
+
             else if(result.equals("failure")){
                 Toast.makeText(getApplicationContext(),"Authentication Failed", Toast.LENGTH_LONG).show();
             }
             else{
                 Toast.makeText(getApplicationContext(),"Something Went Wrong"+result, Toast.LENGTH_LONG).show();
             }
+//            Intent intentd = new Intent(getApplicationContext(), HomeActivity.class);
+
+
+
         }
+
+//        Intent intentd = new Intent(getApplicationContext(), HomeActivity.class);
+//                 intentd.putExtra("w",auth_id);
+
 
         @Override
         protected Object doInBackground(Object[] objects) {
+
             result="";
             auth_name="";
             dep="";
             sem="";
+            auth_id="";
             String phone= (String) objects[0];
             String psw= (String) objects[1];
 
@@ -125,10 +140,12 @@ public class LoginActivity extends AppCompatActivity {
 //                while ((line =reader.readLine())!=null){
 //                    result += line;
 //                }
+
                 result= reader.readLine();
                 auth_name= reader.readLine();
                 sem= reader.readLine();
                 dep= reader.readLine();
+                auth_id=reader.readLine();
                 reader.close();
                 ips.close();
                 http.disconnect();
