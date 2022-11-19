@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +47,8 @@ public class Selectdate extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String value = extras.getString("h");
-        Toast.makeText(Selectdate.this, value, Toast.LENGTH_LONG).show();
+        String r =extras.getString("re");
+        Toast.makeText(Selectdate.this, r, Toast.LENGTH_LONG).show();
         Calendar lastYear = Calendar.getInstance();
         lastYear.add(Calendar.NOVEMBER,-1);
         calendarPickerView = (CalendarPickerView) findViewById(R.id.calendar_view);
@@ -93,7 +95,7 @@ public class Selectdate extends AppCompatActivity {
                     SendDates sendDates=new SendDates();
                     sendDates.execute(firstday,lastday,value);
                     SendDays sendDays=new SendDays();
-                    sendDays.execute(value,nowadays);
+                    sendDays.execute(value,nowadays,r);
                      SendFees sendFees=new SendFees();
                      sendFees.execute(value,fess);
 
@@ -178,6 +180,7 @@ public class Selectdate extends AppCompatActivity {
             result="";
             String ab= (String) objects[0];
             int bc= (int) objects[1];
+            String ss=(String)objects[2];
 
 
             String conn=Configuration.partial_link+"noofdays.php";
@@ -190,7 +193,8 @@ public class Selectdate extends AppCompatActivity {
                 OutputStream ops=http.getOutputStream();
                 BufferedWriter writer=new BufferedWriter(new OutputStreamWriter(ops,"UTF-8"));
                 String data= URLEncoder.encode("auth_id","UTF-8")+"="+URLEncoder.encode(ab,"UTF-8") + "&&" +
-                        URLEncoder.encode("nofdays","UTF-8")+"="+URLEncoder.encode(String.valueOf(bc),"UTF-8") ;
+                        URLEncoder.encode("nofdays","UTF-8")+"="+URLEncoder.encode(String.valueOf(bc),"UTF-8") + "&&" +
+                        URLEncoder.encode("reason","UTF-8")+"="+URLEncoder.encode(ss,"UTF-8") ;
                 writer.write(data);
                 writer.flush();
                 writer.close();

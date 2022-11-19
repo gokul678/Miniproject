@@ -7,11 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.content.Intent;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.Calendar;
@@ -62,6 +66,8 @@ public class HomeActivity extends AppCompatActivity {
     public TextView depview;
     public TextView semview;
     public TextView nfd;
+    public ImageButton save;
+    public EditText reason;
 //    public TextView fday,lday;
 
     @Override
@@ -76,7 +82,9 @@ public class HomeActivity extends AppCompatActivity {
 //          fday=findViewById(R.id.fday);
 //          lday=findViewById(R.id.lday);
          depview=findViewById(R.id.depview);
+         reason=findViewById(R.id.reason);
          semview=findViewById(R.id.semview);
+
 
         button=findViewById(R.id.button);
         Bundle extras = getIntent().getExtras();
@@ -93,9 +101,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 //        String value4= extras.getString("nfd");
-        nameview.setText(  "Name: "+value1);
-        depview.setText("Department: "+value2);
-        semview.setText("Semester: "+value3);
+        nameview.setText(value1);
+        depview.setText(value2);
+        semview.setText(value3);
+
+
+
 //        fday.setText(value5);
 //        lday.setText(value6);
 
@@ -103,12 +114,27 @@ public class HomeActivity extends AppCompatActivity {
 
 
 //        Toast.makeText(getApplicationContext(),value2, Toast.LENGTH_LONG).show();
+//          save.setOnClickListener(new View.OnClickListener() {
+//              @Override
+//              public void onClick(View v) {
+//                   String reas=reason.getText().toString();
+//                  Toast.makeText(getApplicationContext(),reas, Toast.LENGTH_LONG).show();
+//                  Intent activity5 = new Intent(getApplicationContext(),Selectdate.class);
+//
+//                  activity5.putExtra("re",reas);
+//
+//              }
+//          });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent activity2 = new Intent(getApplicationContext(),Selectdate.class);
                 activity2.putExtra("h",value7);
+                String reas=reason.getText().toString();
+                activity2.putExtra("re",reas);
+
+
 
                 startActivity(activity2);
 
