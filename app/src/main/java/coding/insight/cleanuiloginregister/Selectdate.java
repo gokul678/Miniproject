@@ -36,6 +36,7 @@ public class Selectdate extends AppCompatActivity {
 
     private CalendarPickerView calendarPickerView;
     private Button button;
+    int fess=0;
 
 
 
@@ -55,7 +56,7 @@ public class Selectdate extends AppCompatActivity {
         Date today = new Date();
         Calendar calendar = Calendar.getInstance();
 
-        calendar.add(Calendar.DAY_OF_MONTH, 14);
+        calendar.add(Calendar.DAY_OF_MONTH, 11);
         Date tomorrow = calendar.getTime();
         calendarPickerView.init(lastYear.getTime(),tomorrow)
                 .withSelectedDate(today)
@@ -84,10 +85,12 @@ public class Selectdate extends AppCompatActivity {
 //                        Toast.LENGTH_LONG).show();
 //                JSONArray jsonArrayName=new JSONArray();
                 int nowadays = selectedDates.size();
-                 int fess=0;
+
                  fess=4185-(135*nowadays);
                 String firstday = sdf.format(selectedDates.get(0));
                 String lastday = sdf.format(selectedDates.get(selectedDates.size()-1));
+
+
 
                 if (nowadays < 3) {
                     Toast.makeText(Selectdate.this, "MINIMUM THREE DAYS REQUIRED", Toast.LENGTH_LONG).show();
@@ -99,14 +102,11 @@ public class Selectdate extends AppCompatActivity {
                      SendFees sendFees=new SendFees();
                      sendFees.execute(value,fess);
 
-                    Toast.makeText(Selectdate.this, String.valueOf(nowadays) + "days messcut", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(Selectdate.this, String.valueOf(nowadays) + "days messcut", Toast.LENGTH_LONG).show();
+//                      Intent i = new Intent(getApplicationContext(),MainActivity2.class);
+//                      i.putExtra("p",fess);
+//                     startActivity(i);
 
-//                    Intent activity3 = new Intent(getApplicationContext(), HomeActivity.class);
-//                    activity3.putExtra("fame",firstday);
-//                    activity3.putExtra("lime",lastday);
-//
-//                    startActivity(activity3);
-                    finish();
                 }
             }
 
@@ -221,10 +221,16 @@ public class Selectdate extends AppCompatActivity {
 
     class  SendFees extends AsyncTask {
         String result;
+        String f=""+fess;
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             Toast.makeText(getApplicationContext(),result+"hello", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getApplicationContext(),MainActivity2.class);
+            i.putExtra("p",f);
+            startActivity(i);
+            finish();
+
         }
 
         @Override

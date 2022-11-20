@@ -12,18 +12,17 @@
 
     <ImageView
         android:id="@+id/rotate_image"
-        android:layout_width="333dp"
-        android:layout_height="347dp"
-        android:background="@mipmap/logo" />
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@mipmap/pay"/>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="439dp"
-        android:layout_height="120dp"
-        android:text="FISAT MESS MANAGEMENT"
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
         android:fontFamily="@font/poppins_bold"
-        android:textSize="15dp"
-        android:textStyle="bold"
+        android:textSize="30dp"
         android:textColor="@color/black"
         android:textAlignment="center"/>
 
